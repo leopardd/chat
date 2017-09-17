@@ -1,0 +1,30 @@
+# IDE & editor
+.idea
+!.vscode
+
+# dependency
+node_modules
+bower_components
+
+# dist
+main.bundle.js
+
+# test
+coverage
+.nyc_output
+lighthouse
+*.report.dom.html
+
+# OS
+.DS_Store
+
+# lock
+yarn.lock
+package-lock.json
+
+# log
+*.log
+
+# misc
+*.xlsx
+*.csv

@@ -1,0 +1,16 @@
+{
+  "standard.options": {
+    "verbose": true,
+    "env": "jest",
+    "globals": [
+      "localStorage",
+      "WebSocket",
+      "$"
+    ]
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "*.bundle.js": true
+  }
+}
