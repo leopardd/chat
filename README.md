@@ -26,9 +26,9 @@ client: yarn build.prod
 
 ## Note
 - [x] Compatible with all browsers
-- [ ] Unit test
-- [ ] Browser compatibility test
+- [ ] Automated scripts: unit test
+- [ ] Automated scripts: browser compatibility test
+- [ ] Automated scripts: E2E
+- [ ] Automated scripts: deploy to production
 - [ ] History messages
-- [ ] UserIds list on sidebar
-- [ ] Production command
-- [ ] Setup demo
+- [ ] User list on sidebar
