@@ -17,6 +17,7 @@ const oneSec = 1000
 let userIds = []
 /** @type {string[]} */
 let payloads = []
+const maxPayloads = 40
 
 // ================================================================ Function
 
@@ -79,6 +80,16 @@ function forEachClient (func) {
   })
 }
 
+/**
+ * @param {Payload} payload
+ */
+function savePayload (payload) {
+  payloads.push(payload)
+  if (payloads.length > maxPayloads) {
+    payloads.shift()
+  }
+}
+
 // ================================================================ App
 
 const wss = new WebSocket.Server({
@@ -100,7 +111,7 @@ wss.on('connection', (ws) => {
 
           // save into payloads
           const payload = new Payload(ws.id, message)
-          payloads.push(payload)
+          savePayload(payload)
 
           // broadcast
           forEachClient((ws) => {
@@ -144,5 +155,5 @@ wss.on('connection', (ws) => {
 
 setInterval(() => {
   // log
-  debugInterval1('n users', userIds.length)
+  debugInterval1(`n users: ${userIds.length}, payloads.length: ${payloads.length}`)
 }, oneSec)
