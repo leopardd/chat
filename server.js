@@ -5,6 +5,8 @@ const WebSocket = require('ws')
 const uuid = require('uuid/v1')
 const config = require('./config')
 const Action = require('./module/Action')
+const Payload = require('./module/Payload')
+const util = require('./static/util')
 const port = config.port
 const eventKey = config.eventKey
 const readyStateKey = config.readyStateKey
@@ -12,6 +14,8 @@ const oneSec = 1000
 
 /** @type {string[]} */
 let userIds = []
+/** @type {string[]} */
+let payloads = []
 
 // ================================================================ Function
 
@@ -93,13 +97,17 @@ wss.on('connection', (ws) => {
         case eventKey.message:
           const message = action.data
 
+          // save into payloads
+          const payload = new Payload(ws.id, message)
+          payloads.push(payload)
+
           // broadcast
           forEachClient((ws) => {
-            send(ws, eventKey.newMessage, message)
+            send(ws, eventKey.newMessage, payload)
           })
 
           // log
-          debugSocket(`User {ws.id}: {message}`)
+          debugSocket(`${util.short(ws.id)}: ${message}`)
           break
         default:
           debugSocket('Invalid action', action)

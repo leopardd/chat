@@ -1,7 +1,7 @@
 class Action {
   /**
    * @param {string} key
-   * @param {string} data
+   * @param {any} data
    */
   constructor (key, data) {
     this.key = key

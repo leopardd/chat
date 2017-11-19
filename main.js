@@ -4,6 +4,7 @@ const debugSocket = require('debug')('main:socket')
 const faker = require('faker')
 const config = require('./config')
 const Action = require('./module/Action')
+const util = require('./static/util')
 const $messageForm = $('#message-form')
 const $messageInput = $('#message-input')
 const $messages = $('#messages')
@@ -75,9 +76,13 @@ ws.onmessage = (messageEvent) => {
         debugSocket('eventKey.userConnect', action.data)
         break
       case eventKey.newMessage:
+        /** @type {Payload} */
+        const payload = action.data
+
         // ui
         const $message = $('<div>', {class: 'message'})
-        $message.html(action.data)
+        const html = `${util.short(payload.userId)}: ${payload.message}`
+        $message.html(html)
         $messages.append($message)
 
         // log
