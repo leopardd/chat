@@ -18,6 +18,30 @@ const readyStateKey = config.readyStateKey
 // app
 let userId = ''
 
+// ================================================================ UI
+
+const ui = {
+  /**
+   * Update userId
+   *
+   * @param {string}
+   */
+  userId: id => {
+    // ui
+    $userId.html(userId)
+  },
+
+  /**
+   * @param {Payload} payload
+   */
+  addPayload: payload => {
+    const $message = $('<div>', {class: 'message'})
+    const html = `${util.short(payload.userId)}: ${payload.message}`
+    $message.html(html)
+    $messages.append($message)
+  }
+}
+
 // ================================================================ Handle element
 
 $messageForm.submit((e) => {
@@ -66,11 +90,14 @@ ws.onmessage = (messageEvent) => {
 
     switch (action.key) {
       case eventKey.userConnect:
-        // update
-        userId = action.data
+        /** @type {Connected} */
+        const connected = action.data
 
         // ui
-        $userId.html(userId)
+        ui.userId(connected.userId)
+        connected.payloads.forEach(payload => {
+          ui.addPayload(payload)
+        })
 
         break
       case eventKey.newMessage:
@@ -78,10 +105,7 @@ ws.onmessage = (messageEvent) => {
         const payload = action.data
 
         // ui
-        const $message = $('<div>', {class: 'message'})
-        const html = `${util.short(payload.userId)}: ${payload.message}`
-        $message.html(html)
-        $messages.append($message)
+        ui.addPayload(payload)
 
         break
       default:
