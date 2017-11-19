@@ -72,8 +72,6 @@ ws.onmessage = (messageEvent) => {
         // ui
         $userId.html(userId)
 
-        // log
-        debugSocket('eventKey.userConnect', action.data)
         break
       case eventKey.newMessage:
         /** @type {Payload} */
@@ -85,15 +83,13 @@ ws.onmessage = (messageEvent) => {
         $message.html(html)
         $messages.append($message)
 
-        // log
-        debugSocket('eventKey.newMessage', action.data)
         break
       default:
-        debugSocket('Invalid eventKey', action)
+        debugSocket('invalid eventKey', action)
         break
     }
   } catch (e) {
-    debugSocket('Handle websocket event error', e)
+    debugSocket('handle websocket event error', e)
   }
 }
 
