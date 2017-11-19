@@ -28,7 +28,7 @@ const ui = {
    */
   userId: id => {
     // ui
-    $userId.html(userId)
+    $userId.html(id)
   },
 
   /**
