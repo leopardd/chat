@@ -6,6 +6,7 @@ const uuid = require('uuid/v1')
 const config = require('./config')
 const Action = require('./module/Action')
 const Payload = require('./module/Payload')
+const Connected = require('./module/Connected')
 const util = require('./static/util')
 const port = config.port
 const eventKey = config.eventKey
@@ -130,8 +131,13 @@ wss.on('connection', (ws) => {
   const newUserId = getRandomUserId()
   userIds.push(newUserId)
   ws.id = newUserId
+
   // send userId to user
-  send(ws, eventKey.userConnect, newUserId)
+  send(
+    ws,
+    eventKey.userConnect,
+    new Connected(newUserId, payloads)
+  )
 })
 
 // ================================================================ setInterval
