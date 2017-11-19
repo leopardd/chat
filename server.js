@@ -39,6 +39,8 @@ function send (ws, key, data, successCb, errorCb) {
 
 /**
  * Generate unique playerId based on timestamp
+ *
+ * @returns {string}
  */
 function getRandomUserId () {
   let isExisting = true
@@ -61,6 +63,9 @@ function removeUser (userId) {
   if (index > -1) userIds.splice(index, 1)
 }
 
+/**
+ * @param {function} func
+ */
 function forEachClient (func) {
   wss.clients.forEach((ws) => {
     if (ws.readyState === readyStateKey.open) {
