@@ -6,3 +6,7 @@
   overflow-y: scroll;
   background-color: #f3f3f3;
 }
+
+.message:nth-child(even) {
+  color: #8c8c8c;
+}
