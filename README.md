@@ -1,7 +1,7 @@
 # chat
 
-[![Travis](https://img.shields.io/travis/nathaa/chat.svg)](https://travis-ci.org/nathaa/chat)
-[![Codecov](https://img.shields.io/codecov/c/github/nathaa/chat.svg)](https://codecov.io/github/nathaa/chat)
+[![Travis](https://img.shields.io/travis/leopardd/chat.svg)](https://travis-ci.org/leopardd/chat)
+[![Codecov](https://img.shields.io/codecov/c/github/leopardd/chat.svg)](https://codecov.io/github/leopardd/chat)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
 
 Basic chat

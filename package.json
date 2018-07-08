@@ -19,14 +19,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://jojoee@github.com/nathaa/chat.git"
+    "url": "git+https://jojoee@github.com/leopardd/chat.git"
   },
   "author": "Nathachai Thongniran <inid3a@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nathaa/chat/issues"
+    "url": "https://github.com/leopardd/chat/issues"
   },
-  "homepage": "https://github.com/nathaa/chat#readme",
+  "homepage": "https://github.com/leopardd/chat#readme",
   "dependencies": {
     "debug": "^3.0.1",
     "dotenv": "^4.0.0",
