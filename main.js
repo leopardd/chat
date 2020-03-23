@@ -10,7 +10,9 @@ const $messageInput = $('#message-input')
 const $messages = $('#messages')
 const $userId = $('#user-id')
 const $spam = $('#spam')
-const host = `ws://localhost:${config.port}`
+// https://en.wikipedia.org/wiki/Uniform_Resource_Identifier
+const scheme = (location.protocol === 'https:') ? 'wss' : 'ws'
+const host = `${scheme}://localhost:${config.port}`
 const ws = new WebSocket(host)
 const eventKey = config.eventKey
 const readyStateKey = config.readyStateKey
