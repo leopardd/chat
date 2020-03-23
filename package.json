@@ -64,6 +64,7 @@
     "env": "jest",
     "globals": [
       "localStorage",
+      "location",
       "WebSocket",
       "$"
     ]

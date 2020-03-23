@@ -18,7 +18,6 @@ const eventKey = config.eventKey
 const readyStateKey = config.readyStateKey
 
 // app
-let userId = ''
 
 // ================================================================ UI
 
