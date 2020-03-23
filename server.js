@@ -2,6 +2,9 @@ require('dotenv').config()
 const debugSocket = require('debug')('server:socket')
 const debugInterval1 = require('debug')('server:interval1')
 const WebSocket = require('ws')
+const fs = require('fs')
+const https = require('https')
+const IS_HTTPS = process.env.IS_HTTPS === 'true'
 const uuid = require('uuid/v1')
 const config = require('./config')
 const Action = require('./module/Action')
@@ -92,9 +95,18 @@ function savePayload (payload) {
 
 // ================================================================ App
 
-const wss = new WebSocket.Server({
-  port: port
-}, () => {
+let serverParam = { port: port }
+if (IS_HTTPS) {
+  console.log('create server with cert')
+  // todo move to env config
+  const server = https.createServer({
+    cert: fs.readFileSync('./cert.pem'),
+    key: fs.readFileSync('./key.pem')
+  })
+  serverParam = { server }
+}
+
+const wss = new WebSocket.Server(serverParam, () => {
   debugSocket('Server start on port', port)
 })
 
