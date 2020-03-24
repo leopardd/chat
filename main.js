@@ -12,7 +12,7 @@ const $userId = $('#user-id')
 const $spam = $('#spam')
 // https://en.wikipedia.org/wiki/Uniform_Resource_Identifier
 const scheme = (location.protocol === 'https:') ? 'wss' : 'ws'
-const host = `${scheme}://localhost:${config.port}`
+const host = `${scheme}://${location.hostname}:${config.port}`
 const ws = new WebSocket(host)
 const eventKey = config.eventKey
 const readyStateKey = config.readyStateKey
