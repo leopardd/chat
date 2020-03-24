@@ -150,6 +150,11 @@ wss.on('connection', (ws) => {
     debugSocket(`userId: ${ws.id} is disconnected`)
   })
 
+  ws.on('error', (e) => {
+    console.log(e)
+    console.log(e.stack)
+  })
+
   // create new
   const newUserId = getRandomUserId()
   userIds.push(newUserId)
