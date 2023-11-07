@@ -2,6 +2,8 @@ require('dotenv').config()
 const debugSocket = require('debug')('server:socket')
 const debugInterval1 = require('debug')('server:interval1')
 const WebSocket = require('ws')
+const express = require('express')
+const http = require('http')
 const fs = require('fs')
 const https = require('https')
 const IS_HTTPS = process.env.IS_HTTPS === 'true'
@@ -105,8 +107,18 @@ if (IS_HTTPS) {
   })
   serverParam = { server }
 }
+const app = express()
 
-const wss = new WebSocket.Server(serverParam, () => {
+app.use(express.static('public'))
+app.get('/', (req, res) => {
+  // response something
+})
+
+// Create a server by combining express and ws library via http:
+const server = http.createServer(app)
+const wss = new WebSocket.Server({ server })
+
+server.listen(port, () => {
   debugSocket('Server start on port', port)
 })
 
