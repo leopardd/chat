@@ -9,19 +9,23 @@ Basic chat
 ## Getting started
 
 1. Install [Node.js](https://nodejs.org/en/)
-2. Install global dependencies: `npm install -g yarn nodemon pm2`
-2. Install local dependencies: `yarn`
-3. Setup websocket port at `config/index.js`
+2. Install dependencies: `npm install`
+3. Setup config `config/index.js`
 4. Start
 
-```
-// Dev
-server: nodemon server.js --watch server.js
-client: yarn build.watch
+```bash
+# Dev
+npm run build.watch
+nodemon server.js --watch server.js
 
-// Prod
-server: pm2 start server.js
-client: yarn build.prod
+# Prod, server
+npm run build.prod
+node server.js
+
+# ENV
+NODE_ENV=development
+DEBUG=*
+IS_HTTPS=false
 ```
 
 ## Note
