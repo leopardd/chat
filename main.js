@@ -1,7 +1,6 @@
 localStorage.debug = '*'
 
 const debugSocket = require('debug')('main:socket')
-const faker = require('faker')
 const config = require('./config')
 const Action = require('./module/Action')
 const util = require('./static/util')
@@ -52,11 +51,19 @@ $messageForm.submit((e) => {
 })
 
 $spam.click((e) => {
-  const message = faker.lorem.sentence()
+  const message = generateLoremSentence()
   send(eventKey.message, message)
 })
 
 // ================================================================ Function
+
+function generateLoremSentence() {
+  const loremText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in justo in leo pretium pulvinar auctor id libero. Maecenas varius volutpat arcu eget egestas. Fusce at dui at risus cursus accumsan. Aenean sagittis pellentesque justo id fringilla.'
+  const sentences = loremText.match(/[^\.!\?]+[\.!\?]+/g);
+  const randomIndex = Math.floor(Math.random() * sentences.length)
+
+  return sentences[randomIndex].trim()
+}
 
 /**
  * @param {string} key
