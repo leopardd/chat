@@ -25,7 +25,6 @@ node server.js
 # ENV
 NODE_ENV=development
 DEBUG=*
-IS_HTTPS=false
 ```
 
 ## Note
