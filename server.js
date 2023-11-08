@@ -4,9 +4,6 @@ const debugInterval1 = require('debug')('server:interval1')
 const WebSocket = require('ws')
 const express = require('express')
 const http = require('http')
-const fs = require('fs')
-const https = require('https')
-const IS_HTTPS = process.env.IS_HTTPS === 'true'
 const uuid = require('uuid/v1')
 const config = require('./config')
 const Action = require('./module/Action')
@@ -97,16 +94,6 @@ function savePayload (payload) {
 
 // ================================================================ App
 
-let serverParam = { port: port }
-if (IS_HTTPS) {
-  console.log('create server with cert')
-  // todo move to env config
-  const server = https.createServer({
-    cert: fs.readFileSync('./cert.pem'),
-    key: fs.readFileSync('./key.pem')
-  })
-  serverParam = { server }
-}
 const app = express()
 
 app.use(express.static('public'))
